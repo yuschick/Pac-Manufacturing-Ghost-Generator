@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Ghost Generator - Constructors, Prototypes &amp; Localstorage</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="lib/styles/main.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <h1>Pac <span>Manufacturing</span></h1>
+            <h2>Ghost Generator</h2>
+            <form>
+                <label for="ghost-name">Name</label>
+                <input type="text" id="ghost-name" required>
+                <label for="ghost-color">Color</label>
+                <input type="color" id="ghost-color">
+                <label for="ghost-primary">Primary Action</label>
+                <select id="ghost-primary" required>
+              <option value=''>-- Select --</option>
+              <option value="blink">Blink</option>
+              <option value="chase">Chase</option>
+              <option value="float">Float</option>
+              <option value="lookout">Lookout</option>
+              <option value="poof">Poof</option>
+            </select>
+                <label for="ghost-secondary">Secondary Action</label>
+                <select id="ghost-secondary" required>
+                  <option value=''>-- Select --</option>
+                  <option value="blink">Blink</option>
+                  <option value="chase">Chase</option>
+                  <option value="float">Float</option>
+                  <option value="lookout">Lookout</option>
+                  <option value="poof">Poof</option>
+            </select>
+                <input type="submit" value="Build">
+
+            </form>
+
+        </aside>
+        <section class="main-content">
+            <div class="empty-container">
+                <img src="http://danyuschick.com/codepen/pacman/ghost.png" class="noghosts" alt="No Ghosts!">
+                <p class="totesawk">Well, this is awkward. You haven't built any ghosts yet.</p>
+            </div>
+        </section>
+    </div>
+    <script id="ghost" type="text/x-handlebars-template">
+        <div class="ghost-container">
+            <div class="ghost" style="background-color: {{color}}"></div>
+            <div>
+                <p>{{name}}</p>
+            </div>
+        </div>
+    </script>
+
+    <script src="lib/js/vendor.min.js"></script>
+    <script src="lib/js/app.js"></script>
+</body>
+
+</html>
