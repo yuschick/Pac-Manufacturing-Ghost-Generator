@@ -4,4 +4,4 @@ Let's tinker with constructors and prototypes in JavaScript while utilizing Html
 
 [View on GitHub Pages](https://yuschick.github.io/pacman-ghost-generator/)
 
-![Screenshot](https://yuschick.github.io/pacman-ghost-generator/images/screenshot.jpg)
+![Screenshot](https://yuschick.github.io/pacman-ghost-generator/images/screenshot.png)
