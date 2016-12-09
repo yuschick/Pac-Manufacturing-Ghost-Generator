@@ -1,23 +1,23 @@
 (function($) {
-    var allGhosts = [];
-    var storage = {
-        set: function() {
+    let allGhosts = [];
+    const storage = {
+        set() {
             localStorage.setItem("ghosts", JSON.stringify(allGhosts));
         },
-        get: function() {
-            var ghosts = localStorage.ghosts === undefined
+        get() {
+            let ghosts = localStorage.ghosts === undefined
                 ? false
                 : JSON.parse(localStorage.ghosts);
             return ghosts;
         },
-        clear: function() {
+        clear() {
             localStorage.removeItem('ghosts');
             console.log('localStorage cleared!');
         }
     }
 
     Ghost.prototype.buildGhost = function() {
-        var source = $('#ghost').html(),
+        let source = $('#ghost').html(),
             template = Handlebars.compile(source),
             context = this.info,
             html = template(context);
@@ -28,10 +28,10 @@
     }
 
     Ghost.prototype.animate = function(type) {
-        var thisGhost = this.info;
+        const thisGhost = this.info;
         $(thisGhost.self).addClass(thisGhost[type]);
-        $(thisGhost.self).on('animationend', function() {
-            $(this).removeClass(thisGhost[type]);
+        $(thisGhost.self).on('animationend', () => {
+            $(thisGhost.self).removeClass(thisGhost[type]);
         });
     }
 
@@ -41,15 +41,15 @@
         allGhosts.push(this);
         this.animate('primary');
 
-        $(this.info.self).on('click', (function() {
+        $(this.info.self).on('click', () => {
             this.animate('secondary');
-        }).bind(this));
+        });
 
         storage.set();
     }
 
     function formValues() {
-        var context = {
+        const context = {
             name: $('#ghost-name').val(),
             color: $('#ghost-color').val(),
             primary: $('#ghost-primary').val(),
@@ -59,10 +59,10 @@
     }
 
     if (storage.get()) {
-        var ghosts = storage.get();
+        const ghosts = storage.get();
         $('.empty-container').remove();
 
-        for (var index = 0; index < ghosts.length; index++) {
+        for (let index = 0; index < ghosts.length; index++) {
             new Ghost(ghosts[index].info);
         }
     }
@@ -77,7 +77,7 @@
         }
     });
 
-    $('body').on('keypress', function(event) {
+    $('body').on('keypress', (event) => {
         if (event.keyCode === 99) {
             storage.clear();
         }
