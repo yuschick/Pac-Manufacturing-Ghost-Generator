@@ -1,19 +1,87 @@
 /****** Vendor Imports ******/
 /********** Setup ***********/
 @import url("https://fonts.googleapis.com/css?family=Lato|Raleway");
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -22,17 +90,22 @@ time, mark, audio, video {
   vertical-align: baseline; }
 
 body {
-  line-height: 1;
-  width: 100vw; }
+  font-size: 16px;
+  line-height: 1.6;
+  width: 100%; }
 
-ol, ul {
+ol,
+ul {
   list-style: none; }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none; }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
   content: '';
   content: none; }
 
@@ -40,7 +113,12 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-*, *:before, *:after {
+img {
+  max-width: 100%; }
+
+*,
+*:after,
+*:before {
   box-sizing: border-box; }
 
 .lato {
@@ -52,7 +130,7 @@ table {
 body {
   background: url("../../images/bg.png") #333;
   color: #333;
-  font: 16px/20px Raleway, sans-serif; }
+  font: 16px/1.5 Raleway, sans-serif; }
 
 .container {
   align-items: top;
@@ -60,7 +138,7 @@ body {
   border-left: 3px solid #000;
   border-right: 3px solid #000;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
   margin: 0 auto;
   max-width: 1280px;
@@ -80,7 +158,7 @@ body {
 aside {
   border-right: 1px solid #cacaca;
   float: left;
-  height: 100%;
+  min-height: 100vh;
   padding: 15px 10px;
   width: 20%; }
   @media (min-width: 320px) and (max-width: 899px) {
@@ -113,7 +191,7 @@ aside {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  min-height: 100vh;
   justify-content: center;
   overflow: hidden;
   padding: 15px 10px;
@@ -213,7 +291,6 @@ form {
 
 .ghost-container {
   align-self: flex-start;
-  display: none;
   margin: 25px;
   text-align: center; }
   .ghost-container .ghost {

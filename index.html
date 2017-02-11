@@ -1,27 +1,26 @@
 <!doctype html>
 <html lang="en">
+    <head>
+        <meta charset='UTF-8'>
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <title>Pac Manufacturing - Ghost Generator</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="lib/styles/main.css">
+    </head>
 
-<head>
-    <meta charset='UTF-8'>
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Pac Manufacturing - Ghost Generator</title>
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="lib/styles/main.css">
-</head>
-
-<body>
-    <div class="container">
-        <aside>
-            <h1>Pac <span>Manufacturing</span></h1>
-            <h2>Ghost Generator</h2>
-            <form>
-                <label for="ghost-name">Name</label>
-                <input type="text" id="ghost-name" required>
-                <label for="ghost-color">Color</label>
-                <input type="color" id="ghost-color">
-                <label for="ghost-primary">Primary Action (Load)</label>
-                <select id="ghost-primary" required>
+    <body>
+        <div class="container">
+            <aside>
+                <h1>Pac <span>Manufacturing</span></h1>
+                <h2>Ghost Generator</h2>
+                <form autocomplete="off">
+                    <label for="ghost-name">Name</label>
+                    <input type="text" id="ghost-name" required>
+                    <label for="ghost-color">Color</label>
+                    <input type="color" id="ghost-color">
+                    <label for="ghost-primary">Primary Action (Load)</label>
+                    <select id="ghost-primary" required>
                   <option value=''>-- Select --</option>
                   <option value="blink">Blink</option>
                   <option value="chase">Chase</option>
@@ -29,8 +28,8 @@
                   <option value="lookout">Lookout</option>
                   <option value="poof">Poof</option>
                 </select>
-                <label for="ghost-secondary">Secondary Action (Click)</label>
-                <select id="ghost-secondary" required>
+                    <label for="ghost-secondary">Secondary Action (Click)</label>
+                    <select id="ghost-secondary" required>
                   <option value=''>-- Select --</option>
                   <option value="blink">Blink</option>
                   <option value="chase">Chase</option>
@@ -38,19 +37,18 @@
                   <option value="lookout">Lookout</option>
                   <option value="poof">Poof</option>
                 </select>
-                <input type="submit" value="Build">
-            </form>
-        </aside>
-        <main class="main-content">
-            <section class="empty-container">
-                <img src="http://danyuschick.com/codepen/pacman/ghost.png" class="noghosts" alt="No Ghosts!">
-                <p class="totesawk">Well, this is awkward. You haven't built any ghosts yet.</p>
-            </section>
-        </main>
-    </div>
+                    <input type="submit" value="Build">
+                </form>
+            </aside>
+            <main class="main-content">
+                <section class="empty-container">
+                    <img src="http://danyuschick.com/codepen/pacman/ghost.png" class="noghosts" alt="No Ghosts!">
+                    <p class="totesawk">Well, this is awkward. You haven't built any ghosts yet.</p>
+                </section>
+            </main>
+        </div>
 
-    <script id="ghost" type="text/x-handlebars-template">
-        <div class="ghost-container">
+        <script id="ghost-template" type="text/x-handlebars-template">
             <svg class="ghost" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" viewBox="0 0 205.25 203.95" enable-background="new 0 0 205.253 203.945" xml:space="preserve">
             <path id="body-path" fill="{{color}}" d="M0.01 197.33c0 0 1.88-106.37 15.38-136.17 0 0 19.14-57.73 81.27-60.87 0 0 68.4-8.47 95.07 66.2 0 0 5.65 9.1 7.84 39.53 0 0 6.28 54.28 5.65 91.31 0 0 0.63 8.79-4.08 5.34 0 0-0.94-0.63-6.9-5.96 0 0-21.34-29.18-42.67 0.31 0 0-2.82 6-13.81 6.45 0 0-6.27 0.45-14.43-5.2 0 0-13.13-16-20.69-14.43 0 0-6.61-2.82-22.3 15.37 0 0-8.16 5.71-15.06 4.26 0 0-9.73-1.75-13.18-7.72 0 0-12.55-14.43-16.94-10.98 0 0-4.39-3.14-18.2 6.28 0 0-9.73 8.99-12.24 12.66C4.71 203.72-0.21 205.82 0.01 197.33z"/>
             <g>
@@ -63,11 +61,9 @@
             <div>
                 <p>{{name}}</p>
             </div>
-        </div>
-    </script>
+        </script>
 
-    <script src="lib/js/vendor/vendor.min.js"></script>
-    <script src="lib/js/app.js"></script>
-</body>
-
+        <script src="lib/js/vendor/vendor.min.js"></script>
+        <script src="lib/js/app.js"></script>
+    </body>
 </html>

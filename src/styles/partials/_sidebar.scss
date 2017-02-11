@@ -1,12 +1,11 @@
 aside {
     border-right: 1px solid #cacaca;
     float: left;
-    height: 100%;
+    min-height: 100vh;
     padding: $vspace $hspace;
     width: 20%;
-
     @include tablet {
-      width: 30%;
+        width: 30%;
     }
 
     h1 {
@@ -19,9 +18,8 @@ aside {
         padding-bottom: $vspace;
         text-align: right;
         text-transform: uppercase;
-
         @include tablet {
-          background-size: 26%;
+            background-size: 26%;
         }
 
         span {

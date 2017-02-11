@@ -17,34 +17,35 @@ var config = {
 };
 
 gulp.task('sass', function() {
-  return gulp.src(config.srcSass)
-    .pipe(cache('sass-processing'))
-    .pipe(sass(config.production ? {outputStyle: 'compressed'} : {}).on('error', sass.logError))
-    .pipe(config.production ? concat('main.min.css') : util.noop())
-    .pipe(gulp.dest('./lib/styles/'));
+    return gulp.src(config.srcSass)
+        .pipe(sass(config.production ? {
+            outputStyle: 'compressed'
+        } : {}).on('error', sass.logError))
+        .pipe(config.production ? concat('main.min.css') : util.noop())
+        .pipe(gulp.dest('./lib/styles/'));
 });
 
 gulp.task('js', function() {
-  gulp.src(config.srcJs)
-    .pipe(cache('js-processing'))
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(config.production ? concat('app.min.js') : util.noop())
-    .pipe(config.production ? uglify() : util.noop())
-    .pipe(gulp.dest('./lib/js'));
+    gulp.src(config.srcJs)
+        .pipe(cache('js-processing'))
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(config.production ? concat('app.min.js') : util.noop())
+        .pipe(config.production ? uglify() : util.noop())
+        .pipe(gulp.dest('./lib/js'));
 
-  gulp.src(['./src/js/vendor/jquery-3.1.1.min.js', './src/js/vendor/handlebars-v4.0.5.js'])
-    .pipe(cache('vendor-processing'))
-    .pipe(uglify())
-    .pipe(concat('vendor.min.js'))
-    .pipe(gulp.dest('./lib/js/vendor'));
+    gulp.src(['./src/js/vendor/handlebars-v4.0.5.js'])
+        .pipe(cache('vendor-processing'))
+        .pipe(uglify())
+        .pipe(concat('vendor.min.js'))
+        .pipe(gulp.dest('./lib/js/vendor'));
 });
 
 
-gulp.task('watch', function () {
-  gulp.watch(config.srcSass, ['sass']);
-  gulp.watch(config.srcJs, ['js']);
+gulp.task('watch', function() {
+    gulp.watch(config.srcSass, ['sass']);
+    gulp.watch(config.srcJs, ['js']);
 });
 
 gulp.task('default', ['sass', 'js', 'watch']);

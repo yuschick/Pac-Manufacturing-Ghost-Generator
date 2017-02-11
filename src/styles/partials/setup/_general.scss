@@ -1,7 +1,7 @@
 body {
     background: url("../../images/bg.png") $mineshaft;
     color: $mineshaft;
-    font: 16px/20px #{$raleway};
+    font: 16px/1.5 #{$raleway};
 }
 
 .container {
@@ -10,7 +10,7 @@ body {
     border-left: 3px solid #000;
     border-right: 3px solid #000;
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
     justify-content: center;
     margin: 0 auto;
     max-width: 1280px;

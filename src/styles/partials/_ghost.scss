@@ -1,6 +1,5 @@
 .ghost-container {
     align-self: flex-start;
-    display: none;
     margin: 25px;
     text-align: center;
 
@@ -31,9 +30,9 @@
         }
 
         &.blink {
-          #body-path {
-            animation: blink 7s linear;
-          }
+            #body-path {
+                animation: blink 7s linear;
+            }
         }
 
         &.poof {

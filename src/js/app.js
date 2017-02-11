@@ -1,85 +1,119 @@
-(function($) {
-    let allGhosts = [];
-    const storage = {
-        set() {
-            localStorage.setItem("ghosts", JSON.stringify(allGhosts));
-        },
-        get() {
-            let ghosts = localStorage.ghosts === undefined
-                ? false
-                : JSON.parse(localStorage.ghosts);
-            return ghosts;
-        },
-        clear() {
-            localStorage.removeItem('ghosts');
-            console.log('localStorage cleared!');
-        }
-    }
+(function() {
+    const ghostModule = function() {
+        const empty = document.querySelector('.empty-container');
+        const form = document.querySelector('form');
+        const source = document.querySelector('#ghost-template').innerHTML;
+        let allGhosts = [];
 
-    Ghost.prototype.buildGhost = function() {
-        let source = $('#ghost').html(),
-            template = Handlebars.compile(source),
-            context = this.info,
-            html = template(context);
-
-        $(html).prependTo('.main-content').fadeIn();
-
-        return $('.ghost').first();
-    }
-
-    Ghost.prototype.animate = function(type) {
-        const thisGhost = this.info;
-        $(thisGhost.self).addClass(thisGhost[type]);
-        $(thisGhost.self).on('animationend', () => {
-            $(thisGhost.self).removeClass(thisGhost[type]);
-        });
-    }
-
-    function Ghost(context) {
-        this.info = context;
-        this.info.self = this.buildGhost();
-        allGhosts.push(this);
-        this.animate('primary');
-
-        $(this.info.self).on('click', () => {
-            this.animate('secondary');
-        });
-
-        storage.set();
-    }
-
-    function formValues() {
-        const context = {
-            name: $('#ghost-name').val(),
-            color: $('#ghost-color').val(),
-            primary: $('#ghost-primary').val(),
-            secondary: $('#ghost-secondary').val()
+        const storage = {
+            set() {
+                localStorage.setItem("ghosts", JSON.stringify(allGhosts));
+            },
+            get() {
+                let ghosts = localStorage.ghosts === undefined ?
+                    false :
+                    JSON.parse(localStorage.ghosts);
+                return ghosts;
+            },
+            clear() {
+                localStorage.removeItem('ghosts');
+                console.log('localStorage cleared!');
+            }
         };
-        return context;
-    }
 
-    if (storage.get()) {
-        const ghosts = storage.get();
-        $('.empty-container').remove();
+        class Ghost {
+            constructor(context) {
+                this.info = context;
+                this.info.self = this.buildGhost();
+                this.init();
+            }
 
-        for (let index = 0; index < ghosts.length; index++) {
-            new Ghost(ghosts[index].info);
+            animate(type) {
+                this.info.self.classList.add(this.info[type]);
+                this.info.self.addEventListener('animationend', () => {
+                    this.info.self.classList.remove(this.info[type]);
+                });
+            }
+
+            bind() {
+                this.info.self.addEventListener('click', () => {
+                    this.animate('secondary');
+                });
+            }
+
+            buildGhost() {
+                let container = document.createElement('div'),
+                    template = Handlebars.compile(source),
+                    context = this.info,
+                    html = template(context);
+
+                container.className = 'ghost-container';
+                container.innerHTML = html;
+
+                document.querySelector('.main-content').appendChild(container);
+                return container.firstElementChild;
+            }
+
+            store() {
+                allGhosts.push(this);
+            }
+
+            init() {
+                this.bind();
+                this.store();
+                storage.set();
+                this.animate('primary');
+            }
         }
-    }
 
-    $('form').on('submit', function(event) {
-        event.preventDefault();
-        new Ghost(formValues());
-        $(this).trigger('reset');
+        function bindEvents() {
+            form.addEventListener('submit', () => {
+                event.preventDefault();
+                empty.remove();
 
-        if ($('.empty-container').length) {
-            $('.empty-container').remove();
+                new Ghost(formValues(event));
+
+                form.reset();
+            });
+
+            document.addEventListener('keypress', () => {
+                if (event.keyCode === 99) storage.clear(); // C = Clear
+            });
         }
-    });
 
-    $('body').on('keypress', (event) => {
-        if (event.keyCode === 99) {
-            storage.clear();
+        function checkLocalStorage() {
+            if (storage.get()) {
+                const ghosts = storage.get();
+                empty.remove();
+
+                for (let index = 0; index < ghosts.length; index++) {
+                    new Ghost(ghosts[index].info);
+                }
+
+                console.log(allGhosts);
+            }
         }
-    });
-})(jQuery);
+
+        function formValues() {
+            const context = {
+                name: event.target[0].value,
+                color: event.target[1].value,
+                primary: event.target[2].value,
+                secondary: event.target[3].value
+            };
+            return context;
+        }
+
+        function init() {
+            bindEvents();
+            checkLocalStorage();
+        }
+
+        return {
+            run: init
+        };
+    };
+
+    const ghostApp = ghostModule();
+    ghostApp.run();
+})();
