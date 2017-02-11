@@ -29,7 +29,7 @@ gulp.task('js', function() {
     gulp.src(config.srcJs)
         .pipe(cache('js-processing'))
         .pipe(babel({
-            presets: ['es2015']
+            presets: ['es2016']
         }))
         .pipe(config.production ? concat('app.min.js') : util.noop())
         .pipe(config.production ? uglify() : util.noop())

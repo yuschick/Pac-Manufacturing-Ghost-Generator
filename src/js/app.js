@@ -1,4 +1,5 @@
 (function() {
+    "use strict";
     const ghostModule = function() {
         const empty = document.querySelector('.empty-container');
         const form = document.querySelector('form');
